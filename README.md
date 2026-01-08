@@ -1,4 +1,4 @@
-API REST para gerenciamento de livros e clientes, desenvolvida com Spring Boot, JPA (Hibernate)* e MySQL.  
+API REST para gerenciamento de livros e clientes, desenvolvida com Spring Boot, JPA (Hibernate) e MySQL.  
 O projeto aplica conceitos sólidos de *Programação Orientada a Objetos*, arquitetura em camadas e integração com banco de dados relacional.
 
 🚀 Tecnologias utilizadas
