@@ -37,6 +37,7 @@ O projeto segue uma arquitetura em camadas, com separação clara de responsabil
 
 src/main/java/com/biblioteca/biblioteca_api
 │
+├── DTO           → Login Request
 ├── controllers   → Camada de entrada (REST Controllers)
 ├── models        → Entidades do domínio (JPA / POO)
 ├── repositories  → Acesso a dados (JPA Repositories)
@@ -45,6 +46,8 @@ src/main/java/com/biblioteca/biblioteca_api
 └── BibliotecaApiApplication.java
 
 Camadas
+
+DTO (Data Transfer Object): um método para login request que expõe apenas os dados necessários (email,senha)
 
 Models: representam as entidades do sistema (Livro, Cliente, Usuario)
 
@@ -68,14 +71,14 @@ Fluxo de autenticação
 
 1. O usuário faz login via endpoint /auth/login
 
-
 2. A API valida as credenciais
+   
+3. Verifica permissões pelo ROLE
 
+5. Um token JWT é gerado e retornado
 
-3. Um token JWT é gerado e retornado
-
-
-4. O token deve ser enviado no header das requisições protegidas
+6. O token deve ser enviado no header das requisições protegidas
+    
 
 
 
@@ -148,14 +151,14 @@ POST /auth/login → Autenticação e geração de token JWT
 
 GET /livros → Lista todos os livros
 
-GET /livros/{id} → Busca um livro por ID
+GET /livros/findbyid/{id} → Busca um livro por ID
 
 
 👤 Clientes
 
 GET /clientes → Lista todos os clientes
 
-GET /clientes/{id} → Busca cliente por ID
+GET /clientes/findbyid/{id} → Busca cliente por ID
 
 
 > Alguns endpoints exigem autenticação JWT
