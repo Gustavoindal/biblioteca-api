@@ -1,125 +1,245 @@
 📚 Biblioteca API
-API REST para gerenciamento de livros, clientes e usuários, desenvolvida com Spring Boot, JPA (Hibernate), MySQL e autenticação JWT.
-O projeto aplica conceitos sólidos de Programação Orientada a Objetos, arquitetura em camadas, segurança com Spring Security e integração com banco de dados relacional.
+
+API REST para gerenciamento de livros, clientes e usuários, desenvolvida com Spring Boot, JPA (Hibernate), MySQL e JWT para autenticação e autorização.
+
+Este projeto foi criado com foco em aprendizado prático, boas práticas de backend Java e como projeto de portfólio para nível estágio / júnior.
+
+
+---
 
 🚀 Tecnologias utilizadas
+
 Java 21
+
 Spring Boot 3
+
 Spring Security
+
 JWT (JSON Web Token)
+
 Spring Data JPA (Hibernate)
-MySQL
+
+MySQL 8
+
 Maven
+
 REST API
+
 Git & GitHub
 
+
+
+---
+
 🧠 Arquitetura do projeto
-O projeto segue uma separação clara de responsabilidades, baseada em arquitetura em camadas:
-Copiar código
+
+O projeto segue uma arquitetura em camadas, com separação clara de responsabilidades:
 
 src/main/java/com/biblioteca/biblioteca_api
 │
-├── controller    → Camada de entrada (REST Controllers)
-├── models        → Entidades do domínio (POO)
+├── controllers   → Camada de entrada (REST Controllers)
+├── models        → Entidades do domínio (JPA / POO)
 ├── repositories  → Acesso a dados (JPA Repositories)
 ├── services      → Regras de negócio
-├── security      → Configuração de segurança e JWT
+├── security      → JWT, filtros e configurações de segurança
 └── BibliotecaApiApplication.java
+
 Camadas
-Models: entidades do sistema (Livro, Cliente, Usuario)
-Repositories: comunicação com o banco via JPA
-Services: lógica de negócio e orquestração
-Controllers: endpoints REST
-Security: autenticação, autorização e geração/validação de tokens JWT
 
-🔐 Segurança e Autenticação
-A API utiliza JWT (JSON Web Token) para autenticação stateless.
-Fluxo de autenticação:
-O usuário realiza login (/auth/login)
-A API valida as credenciais
-Um token JWT é gerado
-O token deve ser enviado no header das requisições protegidas:
-Copiar código
+Models: representam as entidades do sistema (Livro, Cliente, Usuario)
 
-Authorization: Bearer <token>
-Controle de acesso por role:
-ADMIN
-Acesso completo à API
-CLIENTE
-Acesso restrito (ex: visualização de livros)
+Repositories: comunicação com o banco de dados usando JPA
+
+Services: regras de negócio e orquestração
+
+Controllers: endpoints REST expostos pela API
+
+Security: autenticação e autorização com JWT
+
+
+
+---
+
+🔐 Autenticação e Autorização (JWT)
+
+A API utiliza JWT (JSON Web Token) para controle de acesso.
+
+Fluxo de autenticação
+
+1. O usuário faz login via endpoint /auth/login
+
+
+2. A API valida as credenciais
+
+
+3. Um token JWT é gerado e retornado
+
+
+4. O token deve ser enviado no header das requisições protegidas
+
+
+
+Exemplo de login
+
+POST /auth/login
+Content-Type: application/json
+
+{
+  "email": "teste@email.com",
+  "senha": "123456"
+}
+
+Uso do token
+
+Em requisições protegidas, adicione o header:
+
+Authorization: Bearer SEU_TOKEN_AQUI
+
+Controle de acesso
+
+Usuários com role CLIENTE possuem acesso restrito
+
+Usuários com role ADMIN possuem acesso completo
+
+
+
+---
 
 📌 Funcionalidades
 
 📚 Livros
-Listar livros
+
+Listar todos os livros
+
 Buscar livro por ID
-Persistência em banco MySQL
+
+Persistência em banco de dados MySQL
+
 
 👤 Clientes
+
 Listar clientes
+
 Buscar cliente por ID
-Relacionamento com usuários
+
+Persistência em banco de dados MySQL
+
 
 🔑 Usuários
+
 Autenticação com e-mail e senha
-Senhas armazenadas com BCrypt
+
 Associação entre usuário e cliente
-Autorização baseada em roles
+
+Controle de permissões por role
+
+
+
+---
 
 🌐 Endpoints principais
+
 🔐 Autenticação
-POST /auth/login → Gera token JWT
+
+POST /auth/login → Autenticação e geração de token JWT
+
+
 📚 Livros
-GET /livros → Lista todos os livros (requer autenticação)
-GET /livros/findbyid{id} → Busca livro por ID
+
+GET /livros → Lista todos os livros
+
+GET /livros/{id} → Busca um livro por ID
+
+
 👤 Clientes
-GET /clientes → Lista clientes (ADMIN)
-GET /clientes/findbyid{id} → Busca cliente por ID
+
+GET /clientes → Lista todos os clientes
+
+GET /clientes/{id} → Busca cliente por ID
+
+
+> Alguns endpoints exigem autenticação JWT
+
+
+
+
+---
 
 🗄️ Banco de dados
+
 Banco: MySQL
+
 As tabelas são geradas automaticamente pelo Hibernate
+
 Chaves primárias com AUTO_INCREMENT
-Relacionamento entre:
-usuarios
+
+Relacionamento entre usuários e clientes via chave estrangeira
+
+
+Principais tabelas
+
 clientes
+
+usuarios
+
 livros
-Scripts SQL de exemplo estão disponíveis para carga inicial de dados.
+
+
+
+---
 
 ▶️ Como executar o projeto
-1️⃣ Clone o repositório
-Copiar código
-Bash
-git clone https://github.com/GustavoIndal/biblioteca-api.git
-2️⃣ Configure o banco de dados
-Ajuste o arquivo application.properties com suas credenciais do MySQL.
-3️⃣ Execute o projeto
-Copiar código
-Bash
+
+1. Clonar o repositório
+
+git clone https://github.com/Gustavoindal/biblioteca-api.git
+
+2. Configurar o banco de dados
+
+Crie um banco no MySQL e configure o application.properties:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/livraria
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+
+3. Executar o projeto
+
 mvn spring-boot:run
-4️⃣ Acesse a aplicação
-Copiar código
+
+4. Acessar a API
 
 http://localhost:8080
 
-🧪 Testes
-Os endpoints foram testados utilizando Postman, incluindo:
-Login e geração de JWT
-Requisições autenticadas com Bearer Token
-Testes de acesso por role (ADMIN / CLIENTE)
+
+---
 
 🎯 Objetivo do projeto
+
 Este projeto tem como objetivo:
-Consolidar fundamentos de POO
-Desenvolver uma API REST segura
-Aplicar Spring Security + JWT
+
+Consolidar fundamentos de Programação Orientada a Objetos
+
+Aplicar Spring Boot em uma API REST real
+
+Implementar autenticação JWT
+
 Integrar Java com banco de dados relacional
-Servir como projeto de portfólio para estágios e posições júnior em backend
 
-🧩 Observações
-Projeto em constante evolução, focado no aprendizado prático de:
-Arquitetura backend
-Segurança em APIs REST
-Boas práticas com Spring Boot
+Servir como projeto de portfólio para vagas de backend (estágio/júnior)
 
-👤Autor: Gustavo Indalêncio da Silva.
+
+
+---
+
+👤 Autor
+
+Gustavo Indalêncio da Silva
+
+Projeto desenvolvido para estudo, prática e evolução contínua no desenvolvimento backend Java.
+
+
+---
+
+📄 Licença
+
+Este projeto está sob a licença MIT.
