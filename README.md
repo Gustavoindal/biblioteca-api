@@ -1,11 +1,7 @@
 📚 Biblioteca API
 
-API REST para gerenciamento de livros, clientes e usuários, desenvolvida com Spring Boot, JPA (Hibernate), MySQL e JWT para autenticação e autorização.
+API REST para gerenciamento de uma livraria com controle de usuários, autenticação JWT e regras de acesso por perfil, simulando um sistema real de backend.
 
-Este projeto foi criado com foco em aprendizado prático, boas práticas de backend Java e como projeto de portfólio para nível estágio / júnior.
-
-
----
 
 🚀 Tecnologias utilizadas
 
@@ -28,9 +24,6 @@ REST API
 Git & GitHub
 
 
-
----
-
 🧠 Arquitetura do projeto
 
 O projeto segue uma arquitetura em camadas, com separação clara de responsabilidades:
@@ -47,7 +40,7 @@ src/main/java/com/biblioteca/biblioteca_api
 
 Camadas
 
-DTO (Data Transfer Object): um método para login request que expõe apenas os dados necessários (email,senha)
+DTO (Data Transfer Object): utilizado para expor apenas os dados necessários nas requisições, como no fluxo de autenticação (email e senha), evitando o vazamento de informações internas das entidades.
 
 Models: representam as entidades do sistema (Livro, Cliente, Usuario)
 
@@ -59,9 +52,6 @@ Controllers: endpoints REST expostos pela API
 
 Security: autenticação e autorização com JWT
 
-
-
----
 
 🔐 Autenticação e Autorização (JWT)
 
@@ -75,13 +65,10 @@ Fluxo de autenticação
    
 3. Verifica permissões pelo ROLE
 
-5. Um token JWT é gerado e retornado
+4. Um token JWT é gerado e retornado
 
-6. O token deve ser enviado no header das requisições protegidas
+5. O token deve ser enviado no header das requisições protegidas
     
-
-
-
 Exemplo de login
 
 POST /auth/login
@@ -104,9 +91,6 @@ Usuários com role CLIENTE possuem acesso restrito
 
 Usuários com role ADMIN possuem acesso completo
 
-
-
----
 
 📌 Funcionalidades
 
@@ -137,9 +121,6 @@ Associação entre usuário e cliente
 Controle de permissões por role
 
 
-
----
-
 🌐 Endpoints principais
 
 🔐 Autenticação
@@ -164,10 +145,6 @@ GET /clientes/findbyid/{id} → Busca cliente por ID
 > Alguns endpoints exigem autenticação JWT
 
 
-
-
----
-
 🗄️ Banco de dados
 
 Banco: MySQL
@@ -187,9 +164,13 @@ usuarios
 
 livros
 
+⚙️ Regras de serviço
 
-
----
+1. Apenas usuários autenticados podem acessar endpoints protegidos
+2. Controle de acesso baseado em ROLE (CLIENTE / ADMIN)
+3. Associação obrigatória entre usuário e cliente
+4. Validação de existência antes de buscas por ID
+5. Separação entre dados expostos e entidades internas via DTO
 
 ▶️ Como executar o projeto
 
@@ -214,8 +195,6 @@ mvn spring-boot:run
 http://localhost:8080
 
 
----
-
 🎯 Objetivo do projeto
 
 Este projeto tem como objetivo:
@@ -231,8 +210,14 @@ Integrar Java com banco de dados relacional
 Servir como projeto de portfólio para vagas de backend (estágio/júnior)
 
 
+🔍 Observação
 
----
+Este projeto está em constante evolução, com melhorias planejadas voltadas à escalabilidaed, testes e boas práticas de produção, servindo como base para projetos backend mais complexos.
+
+❓ Como o projeto resolve um problema real
+
+Em sistemas reais de livrarias ou catálogos, é comum a necessidade de controle de acesso por perfil, separação entre usuários administrativos e clientes, e proteção de endpoints sensíveis. Esta API simula esse cenário utilizando autenticação JWT, controle de roles e persistência em banco relacional.
+
 
 👤 Autor
 
@@ -240,8 +225,6 @@ Gustavo Indalêncio da Silva
 
 Projeto desenvolvido para estudo, prática e evolução contínua no desenvolvimento backend Java.
 
-
----
 
 📄 Licença
 
