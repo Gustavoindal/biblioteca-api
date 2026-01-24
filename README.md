@@ -212,7 +212,7 @@ Servir como projeto de portfólio para vagas de backend (estágio/júnior)
 
 🔍 Observação
 
-Este projeto está em constante evolução, com melhorias planejadas voltadas à escalabilidaed, testes e boas práticas de produção, servindo como base para projetos backend mais complexos.
+Este projeto está em constante evolução, com melhorias planejadas voltadas à escalabilidade, testes e boas práticas de produção, servindo como base para projetos backend mais complexos.
 
 ❓ Como o projeto resolve um problema real
 
