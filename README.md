@@ -136,7 +136,7 @@ http://localhost:8080
 ![Cliente200](biblioteca-api/docs/postman/clientes-ok.png.png)
 
 # Cliente com acesso barrado no getClientes
-![ClienteLogin](biblioteca-api/docs/postman/clienteLogin.png.png)
+![ClienteLogin](biblioteca-api/docs/postman/clienteLogin.pm.png)
 ![Cliente403](biblioteca-api/docs/postman/clientes-403.png.png)
 
 
