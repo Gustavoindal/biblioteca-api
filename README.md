@@ -1,19 +1,19 @@
-📚 Biblioteca API
+<h1>📚 Biblioteca API</h1>
 
-API REST para gerenciamento de uma livraria com controle de usuários, autenticação JWT e regras de acesso por perfil, simulando um sistema real de backend.
+## API REST para gerenciamento de uma livraria com controle de usuários, autenticação JWT e regras de acesso por perfil, simulando um sistema real de backend.
 
-🚀 Tecnologias utilizadas
-- Java 21  
-- Spring Boot 3  
-- Spring Security  
-- JWT (JSON Web Token)  
-- Spring Data JPA (Hibernate)  
-- MySQL 8  
-- Maven  
-- REST API  
-- Git & GitHub  
+### 🚀 Tecnologias utilizadas
++ Java 21  
++ Spring Boot 3  
++ Spring Security  
++ JWT (JSON Web Token)  
++ Spring Data JPA (Hibernate)  
++ MySQL 8  
++ Maven  
++ REST API  
++ Git & GitHub  
 
-🧠 Arquitetura do projeto
+## 🧠 Arquitetura do projeto
 O projeto segue uma arquitetura em camadas, com separação clara de responsabilidades:
 src/main/java/com/biblioteca/biblioteca_api │ ├── DTO → Objetos de transferência de dados (ex.: Login Request)
 ├── controllers → Camada de entrada (REST Controllers)
@@ -24,17 +24,17 @@ src/main/java/com/biblioteca/biblioteca_api │ ├── DTO → Objetos de tra
 ├── exceptions → Tratamento de exceções personalizadas (ex.: ResourceNotFoundException)
 └── BibliotecaApiApplication.java
 
-Camadas
+### Camadas
 
-- DTO (Data Transfer Object): Expor somente dados necessários nas requisições, evitando vazamento de informações internas das entidades.  
-- Models: Representam as entidades do sistema (Livro, Cliente, Usuario).  
-- *epositories: Comunicação com o banco de dados usando JPA.  
-- *Services: Implementam as regras de negócio e a orquestração das operações.  
-- Controllers: Endpoints REST expostos pela API.  
-- Security: Autenticação e autorização usando JWT.  
-- Exceptions: Camada dedicada para classes de exceção personalizadas que melhoram a clareza e o tratamento de erros, como ResourceNotFoundException.
++ DTO (Data Transfer Object): Expor somente dados necessários nas requisições, evitando vazamento de informações internas das entidades.  
++ Models: Representam as entidades do sistema (Livro, Cliente, Usuario).  
++ Repositories: Comunicação com o banco de dados usando JPA.  
++ Services: Implementam as regras de negócio e a orquestração das operações.  
++ Controllers: Endpoints REST expostos pela API.  
++ Security: Autenticação e autorização usando JWT.  
++ Exceptions: Camada dedicada para classes de exceção personalizadas que melhoram a clareza e o tratamento de erros, como ResourceNotFoundException.
 
-🔐 Autenticação e Autorização (JWT)
+## 🔐 Autenticação e Autorização (JWT)
 
 A API utiliza JWT (JSON Web Token) para controle de acesso.
 
@@ -65,24 +65,24 @@ Controle de acesso
 Usuários com role CLIENTE possuem acesso restrito
 Usuários com role ADMIN possuem acesso completo
 
-📌 Funcionalidades
+## 📌 Funcionalidades
 
 📚 Livros
-Listar todos os livros
-Buscar livro por ID
-Persistência em banco de dados MySQL
++ Listar todos os livros
++ Buscar livro por ID
++ Persistência em banco de dados MySQL
 
 👤 Clientes
-Listar clientes
-Buscar cliente por ID
-Persistência em banco de dados MySQL
++ Listar clientes
++ Buscar cliente por ID
++ Persistência em banco de dados MySQL
 
 🔑 Usuários
-Autenticação com e-mail e senha
-Associação entre usuário e cliente
-Controle de permissões por role
++ Autenticação com e-mail e senha
++ Associação entre usuário e cliente
++ Controle de permissões por role
 
-🌐 Endpoints principais
+## 🌐 Endpoints principais
 🔐 Autenticação
 POST /auth/login → Autenticação e geração de token JWT
 📚 Livros
@@ -93,7 +93,7 @@ GET /clientes → Lista todos os clientes
 GET /clientes/{id} → Busca cliente por ID
 Alguns endpoints exigem autenticação JWT.
 
-🗄️ Banco de dados
+## 🗄️ Banco de dados
 Banco: MySQL
 As tabelas são geradas automaticamente pelo Hibernate
 Chaves primárias com AUTO_INCREMENT
@@ -103,14 +103,14 @@ clientes
 usuarios
 livros
 
-⚙️ Regras de serviço
+## ⚙️ Regras de serviço
 Apenas usuários autenticados podem acessar endpoints protegidos
 Controle de acesso baseado em ROLE (CLIENTE / ADMIN)
 Associação obrigatória entre usuário e cliente
 Validação de existência antes de buscas por ID, com tratamento de erros via camada de exceções
 Separação entre dados expostos e entidades internas via DTO
 
-▶️ Como executar o projeto
+## ▶️ Como executar o projeto
 Clonar o repositório
 Bash
 git clone https://github.com/Gustavoindal/biblioteca-api.git
@@ -129,7 +129,18 @@ Abra no navegador ou use ferramentas como Postman:
 
 http://localhost:8080
 
-🎯 Objetivo do projeto
+** 📸 Exemplo de uso
+
+# Admin com sucesso no acesso getclientes
+![AdminLogin](docs/postman/adminLogin.png)
+![Cliente200](docs/postman/clientes-ok.png)
+
+# Cliente com acesso barrado no getClientes
+![AdminLogin](docs/postman/clienteLogin.png)
+![AdminLogin](docs/postman/clientes-403.png)
+
+
+## 🎯 Objetivo do projeto
 Este projeto tem como objetivo:
 Consolidar fundamentos de Programação Orientada a Objetos
 Aplicar Spring Boot em uma API REST real
