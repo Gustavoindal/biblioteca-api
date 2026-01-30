@@ -129,7 +129,7 @@ Abra no navegador ou use ferramentas como Postman:
 
 http://localhost:8080
 
-** 📸 Exemplo de uso
+## 📸 Exemplo de uso
 
 # Admin com sucesso no acesso getclientes
 ![AdminLogin](docs/postman/adminLogin.png)
