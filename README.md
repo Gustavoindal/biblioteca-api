@@ -136,8 +136,8 @@ http://localhost:8080
 ![Cliente200](docs/postman/clientes-ok.png)
 
 # Cliente com acesso barrado no getClientes
-![AdminLogin](docs/postman/clienteLogin.png)
-![AdminLogin](docs/postman/clientes-403.png)
+![ClienteLogin](docs/postman/clienteLogin.png)
+![Cliente403](docs/postman/clientes-403.png)
 
 
 ## 🎯 Objetivo do projeto
