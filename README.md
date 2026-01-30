@@ -132,12 +132,12 @@ http://localhost:8080
 ## 📸 Exemplo de uso
 
 # Admin com sucesso no acesso getclientes
-![AdminLogin](biblioteca-api/docs/postman/adminLogin.png)
-![Cliente200](biblioteca-api/docs/postman/clientes-ok.png)
+![AdminLogin](biblioteca-api/docs/postman/adminLogin.png.png)
+![Cliente200](biblioteca-api/docs/postman/clientes-ok.png.png)
 
 # Cliente com acesso barrado no getClientes
-![ClienteLogin](biblioteca-api/docs/postman/clienteLogin.png)
-![Cliente403](biblioteca-api/docs/postman/clientes-403.png)
+![ClienteLogin](biblioteca-api/docs/postman/clienteLogin.png.png)
+![Cliente403](biblioteca-api/docs/postman/clientes-403.png.png)
 
 
 ## 🎯 Objetivo do projeto
