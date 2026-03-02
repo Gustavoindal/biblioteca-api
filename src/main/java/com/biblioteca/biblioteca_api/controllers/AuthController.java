@@ -29,6 +29,19 @@ public class AuthController {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @PostMapping("/seed-users")
+    public ResponseEntity<String> seedUsers() {
+
+        List<Usuario> usuarios = List.of(
+            new Usuario("usuario1@email.com", passwordEncoder.encode("senha1"), "USER"),
+            new Usuario("usuario2@email.com", passwordEncoder.encode("senha2"), "ADMIN")
+        );
+
+    usuarios.forEach(usuarioRepository::save);
+
+    return ResponseEntity.ok("Usuários inseridos com sucesso!");
+}
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest request) {
 
