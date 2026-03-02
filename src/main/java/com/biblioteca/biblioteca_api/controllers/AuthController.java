@@ -1,4 +1,5 @@
 package com.biblioteca.biblioteca_api.controllers;
+import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import com.biblioteca.biblioteca_api.repositories.UsuarioRepository;
 import com.biblioteca.biblioteca_api.security.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.ResponseEntity;
 
 @RestController
@@ -18,15 +20,18 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder; 
 
     public AuthController(
             AuthenticationManager authenticationManager,
             JwtService jwtService,
-            UsuarioRepository usuarioRepository
+            UsuarioRepository usuarioRepository,
+            PasswordEncoder passwordEncoder
     ) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/seed-users")
@@ -37,10 +42,10 @@ public class AuthController {
             new Usuario("usuario2@email.com", passwordEncoder.encode("senha2"), "ADMIN")
         );
 
-    usuarios.forEach(usuarioRepository::save);
+        usuarios.forEach(usuarioRepository::save);
 
-    return ResponseEntity.ok("Usuários inseridos com sucesso!");
-}
+        return ResponseEntity.ok("Usuários inseridos com sucesso!");
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest request) {
