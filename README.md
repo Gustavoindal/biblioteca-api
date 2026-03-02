@@ -41,7 +41,6 @@ A aplicação está disponível online via Render:
 
 O projeto segue arquitetura em camadas, separando responsabilidades:
 src/main/java/com/biblioteca/biblioteca_api │ ├── DTO          → Objetos de transferência de dados ├── controllers  → Endpoints REST ├── models       → Entidades JPA ├── repositories → Acesso ao banco (JPA) ├── services     → Regras de negócio ├── security     → JWT + Spring Security ├── exceptions   → Tratamento global de erros └── BibliotecaApiApplication.java
-Copiar código
 
 ### Camadas
 
@@ -65,7 +64,6 @@ Fluxo:
 4. JWT é gerado
 5. Token deve ser enviado no header:
 Authorization: Bearer SEU_TOKEN
-Copiar código
 
 ---
 
@@ -73,7 +71,6 @@ Copiar código
 
 Para facilitar testes em produção existe o endpoint:
 POST /auth/seed-users
-Copiar código
 
 Ele cria usuários de exemplo:
 
@@ -192,8 +189,6 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/biblioteca
 spring.datasource.username=SEU_USUARIO
 spring.datasource.password=SUA_SENHA
 Execute:
-Bash
-Copiar código
 mvn spring-boot:run
 API disponível em: http://localhost:8080
 
